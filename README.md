@@ -8,3 +8,6 @@
 
 ## [自制编程语言](https://book.douban.com/subject/30311070/)
 <img src= "https://img3.doubanio.com/view/subject/l/public/s29947696.jpg" width = "30%">
+
+## [Python网络编程 第三版](https://book.douban.com/subject/26869212/)
+<img src ="https://img1.doubanio.com/view/subject/l/public/s29028877.jpg" width = "30%">
