@@ -47,8 +47,17 @@ Socket是主机上应用层和运输层之间的接口,也称为应用程序编�
 
 ## UDP和TCP报文段segment结构
 <img src="https://github.com/shawshanks/Reading-Notes/blob/master/image/UDP%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84.png" width = '50%'>
-<img src="https://github.com/shawshanks/Reading-Notes/blob/master/image/TCPsegment.png" width="50%")
+
+<img src="https://github.com/shawshanks/Reading-Notes/blob/master/image/TCPsegment.png" width="50%">
+
+
 ## UDP套接字
 一个UDP套接字由 一个二元元组来标识 即(目的IP地址,目的端口号).
 
 如果两个UDP 报文段有不同的源IP地址或源端口号,但是具有相同的*目的IP地址*和*目的端口号*,那么这两个报文段将通过相同的目的套接字被交给相同的目的进程.
+
+
+## TCP套接字
+TCP套接字是由一个四元元组(源IP地址,源端口号,目的IP地址,目的端口号)来标识的.
+
+与UDP不同的是,两个具有不同源IP地址或源端口号的到达TCP报文段将被定向到两个不同的套接字,除非TCP报文段携带了初始创建链接的请求.
