@@ -46,7 +46,8 @@ Socket是主机上应用层和运输层之间的接口,也称为应用程序编�
 
 
 ## UDP和TCP报文段segment结构
-3.3.1 图
+<img src="https://github.com/shawshanks/Reading-Notes/blob/master/image/UDP%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84.png" width = '50%'>
+<img src="https://github.com/shawshanks/Reading-Notes/blob/master/image/TCPsegment.png" width="50%")
 ## UDP套接字
 一个UDP套接字由 一个二元元组来标识 即(目的IP地址,目的端口号).
 
