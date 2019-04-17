@@ -50,13 +50,15 @@ print(modifiedmessage.decode('utf-8'))  # 将接收到的字节串解码成字�
 clientSocket.close()
  ```
  
- ## 服务器端套接字编程步骤
+ ## 2.服务器端套接字编程步骤
+ 
  1. 实例化(创建)一个套接字
  2. 为服务器套接字绑定(分配)一个端口号
  3. 循环接受服务
     - 接收信息 `recvfrom()方法`
     - 处理信息
     - 发送信息`sendto()方法`
+    
  ### 服务器端  UDPServer.py
  ```python
  from socket import *
