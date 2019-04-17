@@ -1,6 +1,19 @@
 <<计算机网络自顶向下方法>>2.7.1 UDP套接字编程
 
-客户端  UDPClient.py
+
+## 1.UDP客户端套接字编程步骤:
+1. 实例化(创建)一个套接字 socket
+
+2. 使用套接字发送信息 `sorket.sendto()`
+包括 data和(目的主机的地址,端口号) 
+套接字有四个部分: 源主机地址,源端口号(标识源进程及其套接字) 目的主机地址,目的端口号(标识目的进程及其套接字)
+源主机地址和源端口号**默认由操作系统自动处理**
+
+3.接收信息及处理 `socket.recvfrom()`
+
+4. 关闭套接字
+
+### 客户端  UDPClient.py
 ```python
 
 from socket import *    # 导入socket 模块--Python中网络通信的所有基础
@@ -37,7 +50,14 @@ print(modifiedmessage.decode('utf-8'))  # 将接收到的字节串解码成字�
 clientSocket.close()
  ```
  
- 服务器端  UDPServer.py
+ ## 服务器端套接字编程步骤
+ 1. 实例化(创建)一个套接字
+ 2. 为服务器套接字绑定(分配)一个端口号
+ 3. 循环接受服务
+    - 接收信息 `recvfrom()方法`
+    - 处理信息
+    - 发送信息`sendto()方法`
+ ### 服务器端  UDPServer.py
  ```python
  from socket import *
 
