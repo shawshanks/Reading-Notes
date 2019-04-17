@@ -1,6 +1,9 @@
 <<计算机网络自顶向下方法>>2.7.1 UDP套接字编程
 
 
+<img src="https://github.com/shawshanks/Reading-Notes/blob/master/image/UDP%E5%A5%97%E6%8E%A5%E5%AD%97%E7%BC%96%E7%A8%8B.png" width = "80%">
+
+
 ## 1.UDP客户端套接字编程步骤:
 1. 实例化(创建)一个套接字 socket
 
