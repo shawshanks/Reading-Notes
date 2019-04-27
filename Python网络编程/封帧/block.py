@@ -1,3 +1,15 @@
+'''
+封帧问题:
+1. 消息接收方如何知道何时停止调用recv()才不至于消息没接收完.
+2. 消息接收方如何知道何时将接受到的消息作为一个整体来解析或处理.
+
+解决方法:
+1. 一直接收到收到空字符串为止(表示消息结束),然后处理信息 (警告:一定要先完成一个方向的传送,然后反过来在另一方向上发送数据,否则可能会发生死锁问题)
+2. 使用特殊字符来划分消息的边界(当做定界符)
+3. 在消息前加上其长度作为前缀,这样消息接收方就知道消息的长度
+
+本程序使用第三个方法
+'''
 # Sending data over a stream but delimited as lenght-prefixed blocks
 
 import socket
@@ -8,7 +20,9 @@ from argparse import ArgumentParser
 header_struct = struct.Struct('!I')  # message up to 2**32 -1 in length
 # class struct.Struct(format)
 '''
-Return a new Struct object which writes and reads binary data according to the format string format. Creating a Struct object once and calling its methods is more efficient than calling the struct functions with the same format since the format string only needs to be compiled once.
+Return a new Struct object which writes and reads binary data according to the format string format.
+Creating a Struct object once and calling its methods is more efficient than calling the struct functions with the same format
+since the format string only needs to be compiled once.
 !I 表示用于网络传输的long int.(4bytes)
 '''
 
