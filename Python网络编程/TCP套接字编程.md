@@ -61,12 +61,12 @@ clientSocket.close()
 
 ### 2. 主动套接字
 
-2.1. 创建套接字
-2.2  accept()接收连接          使用`accept()`方法,当客户敲门时,创建一个新的`connection`套接字,用于专门和这个客户连接.
+2.1. 创建套接字  
+2.2  accept()接收连接          使用`accept()`方法,当客户敲门时,创建一个新的`connection`套接字,用于专门和这个客户连接.  
 2.3  recv()接收信息            使用`recv()方法`接收信息
 
 ### 3. 关闭套接字
- 3.1 完成工作后,关闭`connection`连接.
+ 3.1 完成工作后,关闭`connection`连接.  
  3.2 如果后续还要等待其他客户端的连接请求,   那么欢迎之门的套接字保持打开,响应后续客户的敲门.
 
 ### TCPServer.py
@@ -85,10 +85,10 @@ serverSocket.listen(1)
 print("服务器已经准备好接收数据")
 
 while True:
-    # 2.1 2.2 创建connection套接字,并接受连接
+    # 2.1 2.2 accept()创建connection套接字,并接受连接
     connectionSocket, addr = serverSocket.accept()
     
-    # 2.3 接收信息
+    # 2.3 recv()接收信息
     sentence_byte = connectionSocket.recv(1024)
     sentence = sentence_byte.decode('utf-8')
     capitalizeSentence = sentence.upper()
