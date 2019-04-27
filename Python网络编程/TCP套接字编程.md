@@ -74,21 +74,21 @@ clientSocket.close()
 from socket import *
 serverPort = 12000
 
-# 1.创建欢迎之门套接字
+# 1.1.创建欢迎之门套接字
 serverSocket = socket(AF_INET, SOCK_STREAM)
 
-# 2. 指定端口
+# 1.2  绑定端口
 serverSocket.bind(('127.0.0.1', serverPort))
 
-# 3.监听客户敲门
+# 1.3 监听客户连接请求
 serverSocket.listen(1)
 print("服务器已经准备好接收数据")
 
 while True:
-    # 4. 创建connection套接字,用于专门和这个客户连接
+    # 2.1 2.2 创建connection套接字,并接受连接
     connectionSocket, addr = serverSocket.accept()
     
-    # 5. 接收信息
+    # 2.3 接收信息
     sentence_byte = connectionSocket.recv(1024)
     sentence = sentence_byte.decode('utf-8')
     capitalizeSentence = sentence.upper()
