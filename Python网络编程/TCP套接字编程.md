@@ -1,3 +1,11 @@
+## 建议阅读文章
+[Socket Programming in Python (Guide)](https://realpython.com/python-sockets/#tcp-sockets)
+其中的一张图说明了Python中socket库方法是如何实现TCP理论的.
+<img src=https://files.realpython.com/media/sockets-tcp-flow.1da426797e37.jpg width=80%>
+
+注意TCP 链接关闭: 客户端使用`close()`发送请求关闭连接信息,即理论上的 FIN, FIN-ACK和ACK 或者 每一个方向上都发送一对FIN和ACK.
+服务器`recv()`方法会返回空值,然后也关闭自己的连接.
+
 ## TCP协议及与UDP协议不同之处
 
 1. TCP是一个面向连接的协议.客户端和服务器能够开始发送数据之前,需要先三次握手并创建一个TCP连接. 
