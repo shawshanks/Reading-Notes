@@ -6,6 +6,13 @@
 注意TCP 链接关闭: 客户端使用`close()`发送请求关闭连接信息,即理论上的 FIN, FIN-ACK和ACK 或者 每一个方向上都发送一对FIN和ACK.
 服务器`recv()`方法会返回空值,然后也关闭自己的连接.
 
+>socket.recv(bufsize[, flags])
+
+>Receive data from the socket. The return value is a bytes object representing the data received. The maximum amount of data to be received at once is specified by bufsize.
+
+因为recv()最后收到的 IP datagram 报文body为空,所以recv()方法会返回空值.
+
+
 ## TCP协议及与UDP协议不同之处
 
 1. TCP是一个面向连接的协议.客户端和服务器能够开始发送数据之前,需要先三次握手并创建一个TCP连接. 
