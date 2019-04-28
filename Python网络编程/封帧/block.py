@@ -10,21 +10,6 @@
 
 本程序使用第三个方法
 '''
-# Sending data over a stream but delimited as lenght-prefixed blocks
-
-import socket
-import struct
-from argparse import ArgumentParser
-
-
-header_struct = struct.Struct('!I')  # message up to 2**32 -1 in length
-# class struct.Struct(format)
-'''
-Return a new Struct object which writes and reads binary data according to the format string format.
-Creating a Struct object once and calling its methods is more efficient than calling the struct functions with the same format
-since the format string only needs to be compiled once.
-!I 表示用于网络传输的long int.(4bytes)
-'''
 
 
 '''
@@ -44,6 +29,8 @@ put_block()中使用 strcut.pack()方法 将 信息长度 编码为字节对象
 >>> block_lenght
 30
 >>> head_struct = struct.struct('!I')
+>>> head_struct.size
+4
 >>> head_struct.pack(block_length)
 b '\x00\x00\x00\x1e'
 >>> len(head_struct.pack(block_length))
@@ -52,18 +39,12 @@ b '\x00\x00\x00\x1e'
 可见pack()方法将 消息 b'Beautiful is better than ugly.'的长度编码为4个字节,
 然后通过send()方法这个4个字节b '\x00\x00\x00\x1e'以二进制格式 发送给服务器.
 
-2. 服务器接收到 head_struct.pack(block_length)之后,使用header_struct.size属性,
-(猜测: 服务器接收到这个struct之后从struct.size中查询到这个struct 的长度信息)
-作为要接收长度前缀信息的长度.
-
->>> head_struct
-<Struct object at 0x02D77F60>
->>> head_struct.size  # 计算struct结构的大小
-4
-
-可见head_struct.size 为4
-
-服务器然后在while循环内 收到 b '\x00\x00\x00\x1e'这4个字节的信息.
+2. 因为一开始在
+`header_struct = struct.Struct('!I')  # message up to 2**32 -1 in length`
+中定义了header_struct,所以服务器知道 header_struct的formating character是 !I
+即用于网络传输的大端法的4字节无符号整数. 这个可以通过 header_struct.size 查询.
+. 然后服务器知道要接收4字节的二进制数据,在while循环内 收到 b '\x00\x00\x00\x1e'
+这4个字节的信息. 
 
 3. 服务器按照大端法使用unpack()方法解码二进制字符串,
 
@@ -71,6 +52,21 @@ b '\x00\x00\x00\x1e'
 (30,)
 
 服务器于是知道这次将要接收到的信息为30个二进制字节.
+'''
+# Sending data over a stream but delimited as lenght-prefixed blocks
+
+import socket
+import struct
+from argparse import ArgumentParser
+
+
+header_struct = struct.Struct('!I')  # message up to 2**32 -1 in length
+# class struct.Struct(format)
+'''
+Return a new Struct object which writes and reads binary data according to the format string format.
+Creating a Struct object once and calling its methods is more efficient than calling the struct functions with the same format
+since the format string only needs to be compiled once.
+!I 表示用于网络传输的long int.(4bytes)
 '''
 
 
